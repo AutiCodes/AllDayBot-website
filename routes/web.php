@@ -15,3 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/", [Homepage::class, "home"]);
+
+Route::get("/login", [Homepage::class, "login"]);
+
+Route::post("/postlogin", [Homepage::class, "postlogin"]);
+
+Route::get("/register", [Homepage::class, "register"]);
+
+Route::post("/postRegistration", [Homepage::class, "postRegistration"]);
+
+Route::get("/logout", [Homepage::class, "logout"]);

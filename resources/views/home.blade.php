@@ -5,8 +5,15 @@
 </head>
 <body>
 
-
 <container>
+
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
     <div class="main_info">
 
         <div class="row">
@@ -16,25 +23,28 @@
                 <center>
                     <p>Totaal leden</p>
                     <br>
-                    <h1>491</h1>
+                    <h1> {{$data->total_members }} </h1>
+                </center>
+            </div>
+
+            <div class="col-sm">
+                <center>
+                    <i class="fa fa-line-chart" style="font-size: 400%;"></i>
+                    <p>Leden online</p>
+                    <br>
+                    <h1>{{ $data->total_members_online }}</h1>
                 </center>
             </div>
 
             <div class="col-sm">
                 <center>
                     <i class="fa fa-comments" style="font-size: 400%;"></i>
-                    <p>Berichten deze maand</p>
-                    <h1>19301</h1>
+                    <p>Berichten totaal</p>
+                    <h1>{{ $data->total_messages }}</h1>
                 </center>
-
             </div>
 
-            <div class="col-sm">
-              <center>
-                <i class="fa fa-fire" style="font-size: 400%;"></i>
-                <p>Populairste kanaal</p>
-                <h1>#tech-talk</h1>
-            </center>            </div>
+
           </div>
         </div>
 
