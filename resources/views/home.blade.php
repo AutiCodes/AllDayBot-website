@@ -51,6 +51,9 @@
     </div>
 </container>
 
+
+@include("layout.footer")
+
 </body>
 <style>
 .main_info {
