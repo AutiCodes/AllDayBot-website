@@ -36,7 +36,7 @@
         Statistieken
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="/statistics/channels">Kanalen</a>
+        <a class="dropdown-item" href="/statistieken/kanalen">Kanalen</a>
       </div>
     </li>
 
