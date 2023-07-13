@@ -21,26 +21,40 @@
 </button>
 <div class="collapse navbar-collapse" id="navbarNavDropdown">
   <ul class="navbar-nav">
+
+
     <li class="nav-item active">
       <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
     </li>
 
+
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Dropdown link
+        Statistieken
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="/">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="/statistics/channels">Kanalen</a>
       </div>
     </li>
 
+
+    <div class="account_section">
+      <li class="nav-item dropdown align-right">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/logout">Uitloggen</a>
+          <a class="dropdown-item" href="/register">Account maken</a>
+
+        </div>
+      </li>
+   </div>
 
     
   </ul>
 </div>
 </nav>
-
 
 
 
