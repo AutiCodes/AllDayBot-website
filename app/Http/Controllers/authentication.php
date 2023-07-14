@@ -9,8 +9,11 @@ use App\Models\User;
 use Session;
 
 
+
 class authentication extends Controller
 {
+
+
 
     public function login() 
     {
@@ -70,6 +73,31 @@ class authentication extends Controller
     }
 
 
+
+    public function change_password()
+    {
+        return view("auth.password_reset");
+    }
+
+
+
+    public function post_change_password(Request $request)
+    {
+
+        $request->validate([
+            "password" => "required",
+            "password_second" => "required"
+        ]);
+
+        User::whereId(auth()->user()->id)->update([
+            "password" => Hash::make($request->password)
+        ]);
+
+        return back()->with("status", "Wachtwoord is succesvol gewijzigd!");
+
+    }
+
+    
 
     public function create(array $data)
     {

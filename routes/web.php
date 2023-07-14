@@ -26,7 +26,8 @@ Route::post("/postlogin", [authentication::class, "post_login"]);
 Route::get("/register", [authentication::class, "register"]);
 Route::post("/postRegistration", [authentication::class, "post_registration"]);
 Route::get("/logout", [authentication::class, "logout"]);
-
+Route::get("/wachtwoord-wijzigen", [authentication::class, "change_password"]);
+Route::post("/post-wachtwoord-wijzigen", [authentication::class, "post_change_password"]);
 
 // Statistics
 Route::get("/statistieken/kanalen", [Statistics::class, "channels"]);

@@ -52,6 +52,7 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="/logout">Uitloggen</a>
               <a class="dropdown-item" href="/register">Account maken</a>
+              <a class="dropdown-item" href="/wachtwoord-wijzigen">Wachtwoord wijzigen</a>
             </div>
           </li>
         </div>
