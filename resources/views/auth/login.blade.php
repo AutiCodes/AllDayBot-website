@@ -22,7 +22,7 @@
 
         <img class="mb-4" src="ADBlogo.png" alt="" width="100" height="100">
 
-        <h1 class="h3 mb-3 font-weight-normal">Inloggen</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-white">Inloggen</h1>
 
         <label for="inputEmail" class="sr-only">Email addres</label>
         <input type="email" id="email_address" class="form-control" placeholder="Email address" name="email" required autofocus>
@@ -30,14 +30,9 @@
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
         <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
       
-        <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Wil je mij onthouden?
-        </label>
-        </div>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-        <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y"); ?> - Een site van AllDayTechAndGaming - In development door KelvinCodes</p>
+        <p class="mt-5 mb-3 text-white">&copy; <?php echo date("Y"); ?> - Een site van AllDayTechAndGaming - In development door KelvinCodes</p>
       
     </form>
   </body>
@@ -47,7 +42,7 @@
     html,
 body {
   height: 100%;
-  background: #FF000;
+  
 }
 
 body {
@@ -62,7 +57,7 @@ body {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background-color: #343a40;
 }
 
 .form-signin {

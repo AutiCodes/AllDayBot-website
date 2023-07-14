@@ -1,54 +1,119 @@
 <!doctype html>
 <html>
 <head>
-   @include('layout.head')
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
+
 </head>
+
+<header>
+    @include('layout.head')
+</header>
+
 <body>
 
 <container>
 
-    @if (session('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
 
+<div class="total align-items-center">
+      <div class="container first_container align-items-center">
 
-    <div class="main_info">
-
-        <div class="row">
+         <div class="row align-items-center">
 
             <div class="col-sm">
-                <center><i class="fa fa-line-chart" style="font-size: 400%;"></i></center>
                 <center>
-                    <p>Totaal leden</p>
-                    <br>
-                    <h1> {{$data->total_members }} </h1>
+                    <i class="fa-solid fa-globe" style="font-size: 400%; color: white;"></i>
+                    <p>Totaal leden:</p>
+                    <h1>{{ $data->total_members }}</h1>
                 </center>
             </div>
 
             <div class="col-sm">
                 <center>
-                    <i class="fa fa-line-chart" style="font-size: 400%;"></i>
-                    <p>Leden online</p>
-                    <br>
+                    <i class="fa-solid fa-globe" style="font-size: 400%; color: white;"></i>
+                    <p>Leden online:</p>
                     <h1>{{ $data->total_members_online }}</h1>
                 </center>
             </div>
 
             <div class="col-sm">
                 <center>
-                    <i class="fa fa-comments" style="font-size: 400%;"></i>
-                    <p>Berichten totaal</p>
+                    <i class="fa-regular fa-message" style="font-size: 400%; color: white;"></i>
+                    <p>Totaal berichten:</p>
                     <h1>{{ $data->total_messages }}</h1>
-                </center>
+                </center>            
+            </div>
+
+         </div>
+         
+      </div>
+      <div class="container second_container align-items-center">
+
+         <div class="row align-items-center">
+
+            <div class="col-sm">
+                <center>
+                    <i class="fa-solid fa-hashtag" style="font-size: 400%; color: white;"></i>
+                    <p>Totaal kanalen:</p>
+                    <h1>{{ $data->count_text_channels }}</h1>
+                </center>      
+            </div>
+
+            <div class="col-sm">
+                <center>
+                    <i class="fa-solid fa-microphone" style="font-size: 400%; color: white;"></i>
+                    <p>Totaal voicekanalen:</p>
+                    <h1>{{ $data->count_voice_channels }}</h1>
+                </center>      
+            </div>
+
+            <div class="col-sm">
+                <center>
+                    <i class="fa-solid fa-box" style="font-size: 400%; color: white;"></i>
+                    <p>Totaal categorieen:</p>
+                    <h1>{{ $data->count_categories }}</h1>
+                </center>      
+            </div>
+
+            <div class="col-sm">
+                <center>
+                    <i class="fa-regular fa-calendar-days" style="font-size: 400%; color: white;"></i>
+                    <p>Guild gemaakt op:</p>
+                    <h3 class="text-white"><?php echo explode(" ", $data->count_created_at)[0]?></h3>
+                </center>      
             </div>
 
 
-          </div>
-        </div>
+         </div>
+         
+      </div>
 
-    </div>
+   </div>
+
+
+@include("layout.footer")
+
+</body>
+<style>
+.total {
+   text-align: center;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    width: 70%
+
+}
+
+.second_container {
+   padding-top: 10%;
+}
+
+</style>
+
+
 </container>
 
 
@@ -56,14 +121,21 @@
 
 </body>
 <style>
+.body {
+    background-color: blue;
+}
+
 .main_info {
-    border: 5px solid;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left:50%;
     transform: translate(-50%, -50%);
-    padding: 10px;
+    padding: 20px;
+    width: 70%;
+    height: 50%;
 
 }
+
+
 </style>
 </html>

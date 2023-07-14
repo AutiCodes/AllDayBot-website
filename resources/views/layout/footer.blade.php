@@ -1,7 +1,7 @@
 <footer class="footer mt-auto py-3 bg-primary">
     <div class="container">
         <center>
-            <p class="text-white">&copy; <?php echo date("Y"); ?> - Een site van AllDayTechAndGaming - In development door KelvinCodes</p>
+            <p class="text-white">&copy; <?php echo date("Y"); ?> AllDayTechAndGaming - In development door KelvinCodes</p>
         </center>
     </div>
  </footer>
