@@ -52,5 +52,13 @@ class Bot_settings extends Controller
 
         return redirect("/instellingen/log");
     }
+    
 
+
+    public function xp()
+    {
+        $model = new Bot_settings_model;
+        
+        return view("bot_settings.xp", ["data" =>$model->get_xp()]);
+    }
 }
