@@ -50,7 +50,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="/instellingen/log">Log</a>
-            <a class="dropdown-item" href="/post-instellingen-bot-xp">XP</a>
+            <a class="dropdown-item" href="/instellingen-bot-xp">XP</a>
           </div>
         </li>
 

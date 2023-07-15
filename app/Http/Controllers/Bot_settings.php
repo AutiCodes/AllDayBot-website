@@ -14,9 +14,11 @@ class Bot_settings extends Controller
 
     public function log()
     {
+
         $model = new Bot_settings_model;
 
         return view("bot_settings.log", ["settings" => $model->get_all_settings()]);
+
     }
 
     
@@ -51,14 +53,34 @@ class Bot_settings extends Controller
         $model->insert_settings_log($message_edited, $message_deleted, $message_reaction, $voice_join_leave, $voice_change, $member_join_leave, $threads, $mod_ban_unban, $member_nickname);
 
         return redirect("/instellingen/log");
+
     }
     
 
 
     public function xp()
     {
+
         $model = new Bot_settings_model;
+
+        return view("bot_settings.xp", ["data" => $model->get_xp()]);
+
+    }
+
+    
+
+    public function post_xp(Request $request)
+    {
         
-        return view("bot_settings.xp", ["data" =>$model->get_xp()]);
+        $model = new Bot_settings_model;
+        $xp = $request->validate([
+            "xp_messages" => "required|numeric",
+            "xp_voicechat" => "required|numeric"
+        ]);
+
+        $model->set_xp($xp["xp_messages"], $xp["xp_voicechat"]);
+
+        return redirect("/instellingen-bot-xp");
+    
     }
 }

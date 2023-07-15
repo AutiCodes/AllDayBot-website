@@ -36,4 +36,6 @@ Route::get("/statistieken/kanalen", [Statistics::class, "channels"]);
 // Bot settings
 Route::get("/instellingen/log", [Bot_settings::class, "log"]);
 Route::post("/post-instellingen-bot-log", [Bot_settings::class, "post_log"]);
-Route::get("/post-instellingen-bot-xp", [Bot_settings::class, "xp"]);
+Route::get("/instellingen-bot-xp", [Bot_settings::class, "xp"]);
+Route::post("/post-instellingen-bot-xp", [Bot_settings::class, "post_xp"]);
+

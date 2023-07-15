@@ -36,7 +36,16 @@ class Bot_settings_model extends Model
     public function get_xp() 
     {
 
-        return DB::select("SELECT xp FROM bot_settings")[0];
+        return DB::select("SELECT xp_messages, xp_voicechat FROM bot_settings")[0];
+
+    }
+
+
+
+    public function set_xp($xp_messages, $xp_voicechat) 
+    {
+
+        DB::update("UPDATE bot_settings SET xp_messages=$xp_messages, xp_voicechat=$xp_voicechat");
         
     }
 }

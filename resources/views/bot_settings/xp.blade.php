@@ -8,39 +8,30 @@
 </header>
 
 <body>
-
-
-
 <container>
 <div class="main_container">
+    <form action="/post-instellingen-bot-xp" method="POST">
+        @csrf
 
-    <center><h1 class="text-white">Wijzig de XP en loop lengte</h1></center>
+        <center><h1 class="text-white">Wijzig de XP</h1></center>
 
-    <div class="container">
+        <label for="xp_messages">Berichten XP per minuut (tussen de 1 en 100):</label>
+        <input type="number" id="xp_messages" name="xp_messages" min="1" max="100" value={{ $data->xp_messages }}>
 
-        <form action="/post-instellingen-bot-xp-minute" method="POST">
+        <br>
+        <br>
 
-            @csrf
-
-            <div class="row">
-
-
-                <div class="col-sm">
-                One of three columns
-                </div>
+        <label for="xp_voicechat">Voicechat XP per minuut (tussen de 1 en 100):</label>
+        <input type="number" id="xp_voicechat" name="xp_voicechat" min="1" max="100" value={{ $data->xp_voicechat }}>
 
 
-                <div class="col-sm">
-                One of three columns
-                </div>
+        <div class="submit_switch">
+            <button type="submit" class="btn btn-primary">
+                Sla de wijzigingen op
+            </button>
+        </div>
 
-
-            </div>
-
-        </form>
-
-    </div>
-
+    </form>
 </div>
 </container>
 
@@ -79,7 +70,7 @@ label {
 
 .submit_switch {
     position: absolute;
-    left: 4%;
+    left: 50%;
 }
 </style>
 </html>
