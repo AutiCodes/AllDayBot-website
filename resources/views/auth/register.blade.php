@@ -11,7 +11,18 @@
                   <div class="card-header">Voeg een nieuwe gebruiker toe</div>
                   <div class="card-body">
   
-                      <form action="/postRegistration" method="POST">
+                      <form action="/post_registreer" method="POST">
+
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @elseif (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                           @csrf
                           <div class="form-group row">
                               <label for="name" class="col-md-4 col-form-label text-md-right">Naam</label>

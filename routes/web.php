@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Bot_settings;
 use App\Http\Controllers\Homepage;
-use App\Http\Controllers\authentication;
+use App\Http\Controllers\Authentication;
 use App\Http\Controllers\Statistics;
 use Illuminate\Support\Facades\Route;
 
@@ -17,25 +17,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 // Homepage
-Route::get("/", [Homepage::class, "home"]);
+Route::get("/", [Homepage::class, "home"])->middleware("auth");
 
 
 // Authentication
-Route::get("/login", [authentication::class, "login"]);
-Route::post("/postlogin", [authentication::class, "post_login"]);
-Route::get("/register", [authentication::class, "register"]);
-Route::post("/postRegistration", [authentication::class, "post_registration"]);
-Route::get("/logout", [authentication::class, "logout"]);
-Route::get("/wachtwoord-wijzigen", [authentication::class, "change_password"]);
-Route::post("/post-wachtwoord-wijzigen", [authentication::class, "post_change_password"]);
+Route::get("/login", [Authentication::class, "login"])->name("login");
+Route::post("/postlogin", [Authentication::class, "post_login"]);
+
+Route::get("/registreer", [Authentication::class, "register"])->middleware("auth");
+Route::post("/post_registreer", [Authentication::class, "post_registration"])->middleware("auth");
+
+Route::get("/logout", [Authentication::class, "logout"])->middleware("auth");
+Route::get("/wachtwoord-wijzigen", [Authentication::class, "change_password"])->middleware("auth");
+
+Route::post("/post-wachtwoord-wijzigen", [Authentication::class, "post_change_password"])->middleware("auth");
+
 
 // Statistics
-Route::get("/statistieken/kanalen", [Statistics::class, "channels"]);
+Route::get("/statistieken/kanalen", [Statistics::class, "channels"])->middleware("auth");
+
 
 // Bot settings
-Route::get("/instellingen/log", [Bot_settings::class, "log"]);
-Route::post("/post-instellingen-bot-log", [Bot_settings::class, "post_log"]);
-Route::get("/instellingen-bot-xp", [Bot_settings::class, "xp"]);
-Route::post("/post-instellingen-bot-xp", [Bot_settings::class, "post_xp"]);
+Route::get("/instellingen/log", [Bot_settings::class, "log"])->middleware("auth");
+Route::post("/post-instellingen-bot-log", [Bot_settings::class, "post_log"])->middleware("auth");
+
+Route::get("/instellingen-bot-xp", [Bot_settings::class, "xp"])->middleware("auth");
+Route::post("/post-instellingen-bot-xp", [Bot_settings::class, "post_xp"])->middleware("auth");
 

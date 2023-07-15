@@ -15,17 +15,11 @@ class Homepage extends Controller
 
     public function home()
     {   
+        
         $Homemodel = new Home;
 
-        if (Auth::check()) {
-            return view("home", ["data" => $Homemodel->home_stats()]);
-        } else {
-            return redirect("/login");
-        }
+        return view("home", ["data" => $Homemodel->home_stats()]);
+
     }
-
-
-
-
 
 }

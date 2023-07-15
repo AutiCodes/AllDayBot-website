@@ -20,6 +20,16 @@
 
         @csrf
 
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <img class="mb-4" src="ADBlogo.png" alt="" width="100" height="100">
 
         <h1 class="h3 mb-3 font-weight-normal text-white">Inloggen</h1>

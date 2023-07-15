@@ -83,4 +83,5 @@ class Bot_settings extends Controller
         return redirect("/instellingen-bot-xp");
     
     }
+    
 }
