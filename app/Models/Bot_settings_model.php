@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 class Bot_settings_model extends Model
 {
     use HasFactory;
-    
 
 
     public function get_all_settings() 

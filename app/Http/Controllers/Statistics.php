@@ -14,16 +14,11 @@ class Statistics extends Controller
     
     public function channels()
     {
-
-        if (!Auth::check()) {
-            return redirect("/login");
-        } 
         
         $model = new Statistics_model;
 
         return view("statistics.channels", ["channels" => $model->get_channel_statistics()]);
 
-        
-
     }
+    
 }

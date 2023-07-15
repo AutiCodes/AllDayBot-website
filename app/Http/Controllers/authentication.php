@@ -10,7 +10,7 @@ use Session;
 
 
 
-class authentication extends Controller
+class Authentication extends Controller
 {
 
 
@@ -33,10 +33,10 @@ class authentication extends Controller
         ]);
 
         if (Auth::attempt($validated)) {
-            return redirect()->intended("/")->withSucces("Je bent ingelogd");
-        } else {
-            return redirect("/login")->withSucces("Aah er ging iets mis");
-        }
+            return redirect("/");
+        } 
+            
+        return back()->with("error", "Aaah grutjes, je kon niet ingelogd worden! Waarschijnlijk zijn je gegevens onjuist! :o ");
 
     }
 
@@ -45,9 +45,7 @@ class authentication extends Controller
     public function register()
     {
 
-        if (Auth::check()) {
-            return view("auth.register");
-        }
+        return view("auth.register");
 
     }
 
@@ -56,17 +54,15 @@ class authentication extends Controller
     public function post_registration(Request $request)
     {  
 
-        if (Auth::check()) {
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|min:6',
-            ]);
-               
-            $data = $request->all();
-            $check = $this->create($data);
-            return redirect("/")->withSuccess('Great! You have Successfully loggedin');
-        }
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+        ]);
+            
+        $data = $request->all();
+        $this->create($data);
+        return back()->with("status", "Gebruiker is");
 
     }
 
@@ -74,7 +70,9 @@ class authentication extends Controller
 
     public function change_password()
     {
+
         return view("auth.password_reset");
+
     }
 
 
@@ -119,4 +117,5 @@ class authentication extends Controller
         return redirect("/login");
         
     }
+
 }
