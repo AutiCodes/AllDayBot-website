@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Bot_settings;
 use App\Http\Controllers\Homepage;
 use App\Http\Controllers\authentication;
 use App\Http\Controllers\Statistics;
@@ -31,3 +32,7 @@ Route::post("/post-wachtwoord-wijzigen", [authentication::class, "post_change_pa
 
 // Statistics
 Route::get("/statistieken/kanalen", [Statistics::class, "channels"]);
+
+// Bot settings
+Route::get("/instellingen/log", [Bot_settings::class, "log"]);
+Route::post("/post-instellingen-bot-log", [Bot_settings::class, "post_log"]);

@@ -27,14 +27,12 @@ class authentication extends Controller
     public function post_login(Request $request)
     {
 
-        $request->validate([
-            "email" => "required",
+        $validated = $request->validate([
+            "email" => "required|email",
             "password" => "required"
         ]);
 
-        $credentials = $request->only("email", "password");
-        
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($validated)) {
             return redirect()->intended("/")->withSucces("Je bent ingelogd");
         } else {
             return redirect("/login")->withSucces("Aah er ging iets mis");

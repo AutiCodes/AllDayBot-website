@@ -44,9 +44,25 @@
         </li>
 
 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Instellingen
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/instellingen/log">Log</a>
+          </div>
+        </li>
+
+        <div class="navbar_welcome_text">
+          <li class="nav-item">
+            <a class="nav-link active">Welkom <?php echo Auth::user()->name; ?> </a>
+          </li>
+        </div>
+
         <div class="account_section">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
             <i class="fa-solid fa-snowman" style="font-size: 150%;"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -70,6 +86,12 @@
     position: absolute;
     right: 1%;
 }
+
+.navbar_welcome_text {
+  position: absolute;
+  right: 7%;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
