@@ -31,7 +31,6 @@ Route::post("/post_registreer", [Authentication::class, "post_registration"])->m
 
 Route::get("/logout", [Authentication::class, "logout"])->middleware("auth");
 Route::get("/wachtwoord-wijzigen", [Authentication::class, "change_password"])->middleware("auth");
-
 Route::post("/post-wachtwoord-wijzigen", [Authentication::class, "post_change_password"])->middleware("auth");
 
 

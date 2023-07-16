@@ -93,7 +93,7 @@ class Authentication extends Controller
 
     }
 
-    
+
 
     public function create(array $data)
     {

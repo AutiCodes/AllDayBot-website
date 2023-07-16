@@ -34,13 +34,14 @@
 
         <h1 class="h3 mb-3 font-weight-normal text-white">Inloggen</h1>
 
-        <label for="inputEmail" class="sr-only">Email addres</label>
-        <input type="email" id="email_address" class="form-control" placeholder="Email address" name="email" required autofocus>
+        <label for="inputEmail" class="sr-only">Email adres</label>
+        <input type="email" id="email_address" class="form-control" placeholder="Email addres" name="email" required autofocus>
 
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
-        <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
-      
-
+        <input type="password" id="password" class="form-control" placeholder="Wachtwoord" name="password" required>
+        
+        <br>
+  
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
         <p class="mt-5 mb-3 text-white">&copy; <?php echo date("Y"); ?> - Een site van AllDayTechAndGaming - In development door KelvinCodes</p>
       
