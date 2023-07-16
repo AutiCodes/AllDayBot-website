@@ -70,6 +70,7 @@
               <a class="dropdown-item" href="/logout">Uitloggen</a>
               <a class="dropdown-item" href="/registreer">Account maken</a>
               <a class="dropdown-item" href="/wachtwoord-wijzigen">Wachtwoord wijzigen</a>
+              <a class="dropdown-item" href="/systeem/logs">Systeem logs</a>
             </div>
           </li>
         </div>

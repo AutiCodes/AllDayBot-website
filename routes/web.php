@@ -4,7 +4,9 @@ use App\Http\Controllers\Bot_settings;
 use App\Http\Controllers\Homepage;
 use App\Http\Controllers\Authentication;
 use App\Http\Controllers\Statistics;
+use App\Http\Controllers\System;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +47,6 @@ Route::post("/post-instellingen-bot-log", [Bot_settings::class, "post_log"])->mi
 Route::get("/instellingen-bot-xp", [Bot_settings::class, "xp"])->middleware("auth");
 Route::post("/post-instellingen-bot-xp", [Bot_settings::class, "post_xp"])->middleware("auth");
 
+
+// System
+Route::get("/systeem/logs", [System::class, "system_logs"]);
