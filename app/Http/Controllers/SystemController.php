@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\System_model as System_model;
+use App\Models\System;
 
 
-class System extends Controller
+class SystemController extends Controller
 {
 
 
     public function system_logs()
     {   
 
-        $model = new System_model;
+        $model = new System;
 
         return view("system.logs", ["logs" => $model->get_system_logs()]);
 

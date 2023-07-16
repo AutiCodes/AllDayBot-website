@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 
 
-class Statistics_model extends Model
+class Statistic extends Model
 {
     public function get_channel_statistics()
     {

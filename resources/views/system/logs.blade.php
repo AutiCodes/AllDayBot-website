@@ -3,7 +3,7 @@
 <div class="log_container">
         
     <div class="container">
-        <h1>Log Activity Lists</h1>
+        <h1>Activity log</h1>
         <table class="table table-bordered">
             <tr>
                 <th>No</th>

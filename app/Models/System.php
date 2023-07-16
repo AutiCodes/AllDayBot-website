@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 
-class System_model extends Model
+class System extends Model
 {
 
     use HasFactory;

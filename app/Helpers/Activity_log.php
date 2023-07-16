@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 use Request;
-use App\Models\Website_activity_log as Activity_log_model;
+use App\Models\Website_activity_log;
 use Auth;
 
 
@@ -25,7 +25,7 @@ class Activity_log
         $log["IP"] = Request::ip();
         $log["agent"] = Request::header("user-agent");
         $log["username"] = $user;
-        Activity_log_model::create($log);
+        Website_activity_log::create($log);
         
     }
 

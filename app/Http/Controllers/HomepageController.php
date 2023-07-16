@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Hash;
 
 
-class Homepage extends Controller
+class HomepageController extends Controller
 {
 
 
