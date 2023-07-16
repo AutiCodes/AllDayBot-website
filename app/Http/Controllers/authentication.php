@@ -18,7 +18,9 @@ class Authentication extends Controller
 
     public function login() 
     {
+
         return view("auth.login");
+        
     }
 
 
@@ -116,6 +118,7 @@ class Authentication extends Controller
     
     public function logout()
     {
+
         $user = Auth::user()->name;
         Activity_log::add_to_log("Gebruiker $user heeft uitgelogd");
 
