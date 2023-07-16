@@ -11,7 +11,7 @@ use Session;
 
 
 
-class Authentication extends Controller
+class AuthenticationController extends Controller
 {
 
 

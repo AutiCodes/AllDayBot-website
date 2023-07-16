@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 
 
-class Bot_settings_model extends Model
+class Bot_setting extends Model
 {
     use HasFactory;
 

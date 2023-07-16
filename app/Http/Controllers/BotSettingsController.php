@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Bot_settings_model;
+use App\Models\Bot_setting;
 use App\Helpers\Activity_log;
 use Auth;
 
 
-class Bot_settings extends Controller
+class BotSettingsController extends Controller
 {
     
 
@@ -16,7 +16,7 @@ class Bot_settings extends Controller
     public function log()
     {
 
-        $model = new Bot_settings_model;
+        $model = new Bot_setting;
 
         return view("bot_settings.log", ["settings" => $model->get_all_settings()]);
 
@@ -53,7 +53,7 @@ class Bot_settings extends Controller
         $user = Auth::user()->name;
         Activity_log::add_to_log("Gebruiker $user heeft log functie gewijzigd");
 
-        $model = new Bot_settings_model;
+        $model = new Bot_setting;
         $model->insert_settings_log($message_edited, $message_deleted, $message_reaction, $voice_join_leave, $voice_change, $member_join_leave, $threads, $mod_ban_unban, $member_nickname);
 
         return redirect("/instellingen/log");
@@ -65,7 +65,7 @@ class Bot_settings extends Controller
     public function xp()
     {
 
-        $model = new Bot_settings_model;
+        $model = new Bot_setting;
 
         return view("bot_settings.xp", ["data" => $model->get_xp()]);
 
@@ -76,7 +76,8 @@ class Bot_settings extends Controller
     public function post_xp(Request $request)
     {
         
-        $model = new Bot_settings_model;
+        $model = new Bot_setting;
+        
         $xp = $request->validate([
             "xp_messages" => "required|numeric",
             "xp_voicechat" => "required|numeric"
