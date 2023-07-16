@@ -16,9 +16,7 @@ class BotSettingsController extends Controller
     public function log()
     {
 
-        $model = new Bot_setting;
-
-        return view("bot_settings.log", ["settings" => $model->get_all_settings()]);
+        return view("bot_settings.log", ["settings" => Bot_setting::all()[0]]);
 
     }
 
@@ -40,21 +38,19 @@ class BotSettingsController extends Controller
 
         ]);
         
-        $message_edited = $validated["sw_message_edited"];
-        $message_deleted = $validated["sw_message_deleted"];
-        $message_reaction = $validated["sw_message_reaction"];
-        $voice_join_leave = $validated["sw_vc_join_leave"];
-        $voice_change = $validated["sw_vc_change"];
-        $member_join_leave = $validated["sw_join_leave"];
-        $threads = $validated["sw_threads"];
-        $mod_ban_unban = $validated["sw_ban_unban"];
-        $member_nickname = $validated["sw_nickname_change"];
-
         $user = Auth::user()->name;
         Activity_log::add_to_log("Gebruiker $user heeft log functie gewijzigd");
 
-        $model = new Bot_setting;
-        $model->insert_settings_log($message_edited, $message_deleted, $message_reaction, $voice_join_leave, $voice_change, $member_join_leave, $threads, $mod_ban_unban, $member_nickname);
+        $setting = Bot_setting::find(1);
+        $setting->message_edited = $validated["sw_message_edited"];
+        $setting->message_deleted = $validated["sw_message_deleted"];
+        $setting->message_reaction = $validated["sw_message_reaction"];
+        $setting->voice_join_leave = $validated["sw_vc_join_leave"];
+        $setting->voice_change = $validated["sw_vc_change"];
+        $setting->threads = $validated["sw_threads"];
+        $setting->mod_ban_unban = $validated["sw_ban_unban"];
+        $setting->member_nickname = $validated["sw_nickname_change"];                                       
+        $setting->save();
 
         return redirect("/instellingen/log");
 
@@ -64,10 +60,8 @@ class BotSettingsController extends Controller
 
     public function xp()
     {
-
-        $model = new Bot_setting;
-
-        return view("bot_settings.xp", ["data" => $model->get_xp()]);
+        
+        return view("bot_settings.xp", ["data" => Bot_setting::all()[0]]);
 
     }
 
@@ -76,9 +70,7 @@ class BotSettingsController extends Controller
     public function post_xp(Request $request)
     {
         
-        $model = new Bot_setting;
-        
-        $xp = $request->validate([
+        $validated = $request->validate([
             "xp_messages" => "required|numeric",
             "xp_voicechat" => "required|numeric"
         ]);
@@ -86,7 +78,10 @@ class BotSettingsController extends Controller
         $user = Auth::user()->name;
         Activity_log::add_to_log("Gebruiker $user heeft xp gewijzigd");
 
-        $model->set_xp($xp["xp_messages"], $xp["xp_voicechat"]);
+        $settings = Bot_setting::find(1);
+        $settings->xp_messages = $validated["xp_messages"];
+        $settings->xp_voicechat = $validated["xp_voicechat"];
+        $settings->save();
 
         return redirect("/instellingen-bot-xp");
     

@@ -68,6 +68,7 @@ class AuthenticationController extends Controller
         $this->create($data);
         $user = Auth::user()->name;
         Activity_log::add_to_log("Gebruiker aangemaakt door $user");
+
         return back()->with("status", "Gebruiker is aangemaakt");
 
     }
@@ -97,6 +98,7 @@ class AuthenticationController extends Controller
 
         $user = Auth::user()->name;
         Activity_log::add_to_log("Wachtwoord gewijzigd door $user");
+        
         return back()->with("status", "Wachtwoord is succesvol gewijzigd!");
 
     }

@@ -3,7 +3,7 @@
 use App\Http\Controllers\BotSettingsController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\SystemController;
 
 use Illuminate\Support\Facades\Route;
@@ -38,7 +38,7 @@ Route::post("/post-wachtwoord-wijzigen", [AuthenticationController::class, "post
 
 
 // Statistics
-Route::get("/statistieken/kanalen", [StatisticsController::class, "channels"])->middleware("auth");
+Route::get("/statistieken/kanalen", [StatisticController::class, "channels"])->middleware("auth");
 
 
 // Bot settings
