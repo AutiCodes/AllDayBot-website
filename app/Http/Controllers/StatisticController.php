@@ -8,16 +8,14 @@ use App\Models\Statistic;
 
 
 
-class StatisticsController extends Controller
+class StatisticController extends Controller
 {
 
     
     public function channels()
     {
         
-        $model = new Statistic;
-
-        return view("statistics.channels", ["channels" => $model->get_channel_statistics()]);
+        return view("statistics.channels", ["channels" => Statistic::all()[0]]);
 
     }
     
