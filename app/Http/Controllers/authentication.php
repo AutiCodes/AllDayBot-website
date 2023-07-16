@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Activity_log;
 use Illuminate\Http\Request;
 use Hash;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,7 @@ class Authentication extends Controller
 
     public function login() 
     {
-
         return view("auth.login");
-
     }
 
 
@@ -33,9 +32,12 @@ class Authentication extends Controller
         ]);
 
         if (Auth::attempt($validated)) {
+            $user = Auth::user()->name;
+            Activity_log::add_to_log("Gebruiker $user heeft ingelogd");
             return redirect("/");
         } 
             
+        Activity_log::add_to_log("Gefaalde login");
         return back()->with("error", "Aaah grutjes, je kon niet ingelogd worden! Waarschijnlijk zijn je gegevens onjuist! :o ");
 
     }
@@ -62,7 +64,9 @@ class Authentication extends Controller
             
         $data = $request->all();
         $this->create($data);
-        return back()->with("status", "Gebruiker is");
+        $user = Auth::user()->name;
+        Activity_log::add_to_log("Gebruiker aangemaakt door $user");
+        return back()->with("status", "Gebruiker is aangemaakt");
 
     }
 
@@ -89,11 +93,13 @@ class Authentication extends Controller
             "password" => Hash::make($request->password)
         ]);
 
+        $user = Auth::user()->name;
+        Activity_log::add_to_log("Wachtwoord gewijzigd door $user");
         return back()->with("status", "Wachtwoord is succesvol gewijzigd!");
 
     }
 
-    
+
 
     public function create(array $data)
     {
@@ -110,6 +116,8 @@ class Authentication extends Controller
     
     public function logout()
     {
+        $user = Auth::user()->name;
+        Activity_log::add_to_log("Gebruiker $user heeft uitgelogd");
 
         Session::flush();
         Auth::logout();

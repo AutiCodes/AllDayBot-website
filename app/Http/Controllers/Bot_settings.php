@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bot_settings_model;
-
+use App\Helpers\Activity_log;
+use Auth;
 
 
 class Bot_settings extends Controller
@@ -49,6 +50,9 @@ class Bot_settings extends Controller
         $mod_ban_unban = $validated["sw_ban_unban"];
         $member_nickname = $validated["sw_nickname_change"];
 
+        $user = Auth::user()->name;
+        Activity_log::add_to_log("Gebruiker $user heeft log functie gewijzigd");
+
         $model = new Bot_settings_model;
         $model->insert_settings_log($message_edited, $message_deleted, $message_reaction, $voice_join_leave, $voice_change, $member_join_leave, $threads, $mod_ban_unban, $member_nickname);
 
@@ -77,6 +81,9 @@ class Bot_settings extends Controller
             "xp_messages" => "required|numeric",
             "xp_voicechat" => "required|numeric"
         ]);
+
+        $user = Auth::user()->name;
+        Activity_log::add_to_log("Gebruiker $user heeft xp gewijzigd");
 
         $model->set_xp($xp["xp_messages"], $xp["xp_voicechat"]);
 
