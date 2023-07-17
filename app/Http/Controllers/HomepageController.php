@@ -12,13 +12,8 @@ use Hash;
 
 class HomepageController extends Controller
 {
-
-
     public function home()
     {   
-        
-        return view("home", ["data" => Statistic::all()[0]]);
-
+        return view('home', ['data' => Statistic::all()->first()]);
     }
-
 }

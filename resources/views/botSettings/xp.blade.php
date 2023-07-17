@@ -9,23 +9,23 @@
 
 <body>
 <container>
-<div class="main_container">
+<div class="mainContainer">
     <form action="/post-instellingen-bot-xp" method="POST">
         @csrf
 
         <center><h1 class="text-white">Wijzig de XP</h1></center>
 
-        <label for="xp_messages">Berichten XP per minuut (tussen de 1 en 100):</label>
-        <input type="number" id="xp_messages" name="xp_messages" min="1" max="100" value={{ $data->xp_messages }}>
+        <label for="xpMessages">Berichten XP per minuut (tussen de 1 en 100):</label>
+        <input type="number" id="xpMessages" name="xpMessages" min="1" max="100" value={{ $data->xpMessages }}>
 
         <br>
         <br>
 
-        <label for="xp_voicechat">Voicechat XP per minuut (tussen de 1 en 100):</label>
-        <input type="number" id="xp_voicechat" name="xp_voicechat" min="1" max="100" value={{ $data->xp_voicechat }}>
+        <label for="xpVoicechat">Voicechat XP per minuut (tussen de 1 en 100):</label>
+        <input type="number" id="xpVoicechat" name="xpVoicechat" min="1" max="100" value={{ $data->xpVoicechat }}>
 
 
-        <div class="submit_switch">
+        <div class="submitSwitch">
             <button type="submit" class="btn btn-primary">
                 Sla de wijzigingen op
             </button>
@@ -39,7 +39,7 @@
 
 </body>
 <style>
-.main_container {
+.mainContainer {
     position: absolute;
     top: 35%;
     left:50%;
@@ -68,7 +68,7 @@ label {
     padding-top: 20px;
 }
 
-.submit_switch {
+.submitSwitch {
     position: absolute;
     left: 50%;
 }

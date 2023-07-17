@@ -7,16 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Statistic;
 
 
-
 class StatisticController extends Controller
 {
-
-    
     public function channels()
     {
-        
-        return view("statistics.channels", ["channels" => Statistic::all()[0]]);
-
+        return view('statistics.channels', ['channels' => Statistic::all()->first()]);
     }
-    
 }

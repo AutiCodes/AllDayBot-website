@@ -9,7 +9,5 @@ use Illuminate\Support\Facades\DB;
 
 class System extends Model
 {
-
     use HasFactory;
-
 }

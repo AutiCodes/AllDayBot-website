@@ -27,14 +27,14 @@ Route::get("/", [HomepageController::class, "home"])->middleware("auth");
 
 // Authentication
 Route::get("/login", [AuthenticationController::class, "login"])->name("login");
-Route::post("/postlogin", [AuthenticationController::class, "post_login"]);
+Route::post("/postlogin", [AuthenticationController::class, "postLogin"]);
 
 Route::get("/registreer", [AuthenticationController::class, "register"])->middleware("auth");
-Route::post("/post_registreer", [AuthenticationController::class, "post_registration"])->middleware("auth");
+Route::post("/post_registreer", [AuthenticationController::class, "postRegistration"])->middleware("auth");
 
 Route::get("/logout", [AuthenticationController::class, "logout"])->middleware("auth");
-Route::get("/wachtwoord-wijzigen", [AuthenticationController::class, "change_password"])->middleware("auth");
-Route::post("/post-wachtwoord-wijzigen", [AuthenticationController::class, "post_change_password"])->middleware("auth");
+Route::get("/wachtwoord-wijzigen", [AuthenticationController::class, "changePassword"])->middleware("auth");
+Route::post("/post-wachtwoord-wijzigen", [AuthenticationController::class, "postChangePassword"])->middleware("auth");
 
 
 // Statistics
@@ -43,11 +43,11 @@ Route::get("/statistieken/kanalen", [StatisticController::class, "channels"])->m
 
 // Bot settings
 Route::get("/instellingen/log", [BotSettingsController::class, "log"])->middleware("auth");
-Route::post("/post-instellingen-bot-log", [BotSettingsController::class, "post_log"])->middleware("auth");
+Route::post("/post-instellingen-bot-log", [BotSettingsController::class, "postLog"])->middleware("auth");
 
 Route::get("/instellingen-bot-xp", [BotSettingsController::class, "xp"])->middleware("auth");
-Route::post("/post-instellingen-bot-xp", [BotSettingsController::class, "post_xp"])->middleware("auth");
+Route::post("/post-instellingen-bot-xp", [BotSettingsController::class, "postXp"])->middleware("auth");
 
 
 // System
-Route::get("/systeem/logs", [SystemController::class, "system_logs"]);
+Route::get("/systeem/logs", [SystemController::class, "systemLogs"]);
