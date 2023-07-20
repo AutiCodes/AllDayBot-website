@@ -9,7 +9,7 @@
 
 <body>
 <container>
-<div class="main_container">
+<div class="mainContainer">
     <form action="/post-instellingen-bot-xp" method="POST">
         @csrf
 
@@ -25,7 +25,7 @@
         <input type="number" id="xp_voicechat" name="xp_voicechat" min="1" max="100" value={{ $data->xp_voicechat }}>
 
 
-        <div class="submit_switch">
+        <div class="submitSwitch">
             <button type="submit" class="btn btn-primary">
                 Sla de wijzigingen op
             </button>
@@ -39,7 +39,7 @@
 
 </body>
 <style>
-.main_container {
+.mainContainer {
     position: absolute;
     top: 35%;
     left:50%;
@@ -68,7 +68,7 @@ label {
     padding-top: 20px;
 }
 
-.submit_switch {
+.submitSwitch {
     position: absolute;
     left: 50%;
 }

@@ -3,20 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Website_activity_log;
-
-
+use App\Models\WebsiteActivityLog;
 
 class SystemController extends Controller
 {
-
-
-
-    public function system_logs()
+    public function systemLogs()
     {   
-
-        return view("system.logs", ["logs" => Website_activity_log::select("*")->orderByDesc("created_at")->get()]);
-
+        return view('system.logs', ['logs' => WebsiteActivityLog::get()->take(12)->sortByDesc('created_at')]);
     }
-
 }

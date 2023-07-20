@@ -12,7 +12,7 @@
 
 
 <container>
-<div class="main_container">
+<div class="mainContainer">
 
     <center><h1 class="text-white">Wijzig wat er gelogd moet worden!</h1></center>
 
@@ -36,7 +36,7 @@
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="sw_message_edited" value=0>
 
-                            @if ($settings->message_edited == 1)
+                            @if ($settings->sw_message_edited == 1)
                                 <input type="checkbox" class="custom-control-input" id="sw_message_edited" data-off="x" name="sw_message_edited" value=1 checked='checked'>
                             @else 
                                 <input type="checkbox" class="custom-control-input" id="sw_message_edited" data-off="x" value=1 name="sw_message_edited">
@@ -48,7 +48,7 @@
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="sw_message_deleted" value=0>
 
-                            @if ($settings->message_deleted == 1)
+                            @if ($settings->sw_message_deleted == 1)
                                 <input type="checkbox" class="custom-control-input" value=1 id="sw_message_deleted" name="sw_message_deleted" checked='checked'>
 
                             @else
@@ -61,7 +61,7 @@
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="sw_message_reaction" value=0>
 
-                            @if ($settings->message_reaction == 1)
+                            @if ($settings->sw_message_reaction == 1)
                                 <input type="checkbox" class="custom-control-input" value=1 name="sw_message_reaction" id="sw_message_reaction" checked='checked'>
                             @else
                                 <input type="checkbox" class="custom-control-input" value=1 name="sw_message_reaction" id="sw_message_reaction">
@@ -88,7 +88,7 @@
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="sw_vc_join_leave" value=0>
 
-                            @if ($settings->voice_join_leave == 1)
+                            @if ($settings->sw_vc_join_leave == 1)
                                 <input type="checkbox" class="custom-control-input" name="sw_vc_join_leave" value=1 id="sw_vc_join_leave" checked='checked'>
                             @else
                                 <input type="checkbox" class="custom-control-input" name="sw_vc_join_leave" value=1 id="sw_vc_join_leave">
@@ -100,7 +100,7 @@
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="sw_vc_change" value=0>
 
-                            @if ($settings->voice_change == 1)
+                            @if ($settings->sw_vc_change == 1)
                                 <input type="checkbox" class="custom-control-input" name="sw_vc_change" value=1 id="sw_vc_change" checked='checked'>
                             @else
                                 <input type="checkbox" class="custom-control-input" name="sw_vc_change" value=1 id="sw_vc_change">                                
@@ -129,7 +129,7 @@
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="sw_join_leave" value=0>
 
-                            @if ($settings->member_join_leave == 1)
+                            @if ($settings->sw_join_leave == 1)
                                 <input type="checkbox" class="custom-control-input" name="sw_join_leave" value=1 id="sw_join_leave" checked='checked'>
                             @else                                
                                 <input type="checkbox" class="custom-control-input" name="sw_join_leave" value=1 id="sw_join_leave">
@@ -141,7 +141,7 @@
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="sw_threads" value=0>
 
-                            @if ($settings->threads == 1)
+                            @if ($settings->sw_threads == 1)
                                 <input type="checkbox" class="custom-control-input" name="sw_threads" value=1 id="sw_threads" checked='checked'>
                             @else
                                 <input type="checkbox" class="custom-control-input" name="sw_threads" value=1 id="sw_threads">
@@ -173,7 +173,7 @@
                         <div class="custom-control custom-switch">
                             <input type="hidden" name="sw_ban_unban" value=0>
 
-                            @if ($settings->mod_ban_unban == 1)
+                            @if ($settings->sw_ban_unban == 1)
                                 <input type="checkbox" class="custom-control-input" name="sw_ban_unban" value=1 id="sw_ban_unban" checked='checked'>
                             @else
                                 <input type="checkbox" class="custom-control-input" name="sw_ban_unban" value=1 id="sw_ban_unban">
@@ -204,7 +204,7 @@
                         <div class="custom-control custom-switch">\
                             <input type="hidden" name="sw_nickname_change" value=0>
 
-                            @if ($settings->member_nickname == 1)
+                            @if ($settings->sw_nickname_change == 1)
                                 <input type="checkbox" class="custom-control-input" name="sw_nickname_change" value=1 id="sw_nickname_change" checked='checked'>
                             @else
                                 <input type="checkbox" class="custom-control-input" name="sw_nickname_change" value=1 id="sw_nickname_change">
@@ -226,7 +226,7 @@
 
         <br>
 
-        <div class="submit_switch">
+        <div class="submitSwitch">
             <button type="submit" class="btn btn-primary">
                 Sla de wijzigingen op
             </button>
@@ -243,7 +243,7 @@
 
 </body>
 <style>
-.main_container {
+.mainContainer {
     position: absolute;
     top: 35%;
     left:50%;
@@ -272,7 +272,7 @@ label {
     padding-top: 20px;
 }
 
-.submit_switch {
+.submitSwitch {
     position: absolute;
     left: 4%;
 }

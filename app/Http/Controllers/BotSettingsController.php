@@ -3,88 +3,69 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Bot_setting;
-use App\Helpers\Activity_log;
+use App\Models\BotSetting;
+use App\Helpers\ActivityLog;
 use Auth;
-
 
 class BotSettingsController extends Controller
 {
-    
-
-
     public function log()
     {
-
-        return view("bot_settings.log", ["settings" => Bot_setting::all()[0]]);
-
+        return view('bot_settings.log', ['settings' => BotSetting::all()->first()]);
     }
 
-    
-
-    public function post_log(Request $request)
-    {   
-
+    public function postLog(Request $request)
+    {    
         $validated = $request->validate([
-            "sw_message_edited" => "sometimes|nullable|max:1",
-            "sw_message_deleted" => "sometimes|nullable|max:1",
-            "sw_message_reaction" => "max:1|nullable",
-            "sw_vc_join_leave" => "max:1|nullable",
-            "sw_vc_change" => "max:1|nullable",
-            "sw_join_leave" => "max:1|nullable",
-            "sw_threads" => "max:1|nullable",
-            "sw_ban_unban" => "max:1|nullable",
-            "sw_nickname_change" => "max:1|nullable",
-
+            'sw_message_edited' => 'max:1|nullable',
+            'sw_message_deleted' => 'max:1|nullable',
+            'sw_message_reaction' => 'max:1|nullable',
+            'sw_vc_join_leave' => 'max:1|nullable',
+            'sw_vc_change' => 'max:1|nullable',
+            'sw_join_leave' => 'max:1|nullable',
+            'sw_threads' => 'max:1|nullable',
+            'sw_ban_unban' => 'max:1|nullable',
+            'sw_nickname_change' => 'max:1|nullable',
         ]);
         
         $user = Auth::user()->name;
-        Activity_log::add_to_log("Gebruiker $user heeft log functie gewijzigd");
+        ActivityLog::addToLog("Gebruiker $user heeft log functie gewijzigd");
 
-        $setting = Bot_setting::find(1);
-        $setting->message_edited = $validated["sw_message_edited"];
-        $setting->message_deleted = $validated["sw_message_deleted"];
-        $setting->message_reaction = $validated["sw_message_reaction"];
-        $setting->voice_join_leave = $validated["sw_vc_join_leave"];
-        $setting->voice_change = $validated["sw_vc_change"];
-        $setting->threads = $validated["sw_threads"];
-        $setting->mod_ban_unban = $validated["sw_ban_unban"];
-        $setting->member_nickname = $validated["sw_nickname_change"];                                       
+        $setting = BotSetting::find(1);        
+        $setting->sw_message_edited = $validated['sw_message_edited'];
+        $setting->sw_message_deleted = $validated['sw_message_deleted'];
+        $setting->sw_message_reaction = $validated['sw_message_reaction'];
+        $setting->sw_vc_join_leave = $validated['sw_vc_join_leave'];
+        $setting->sw_vc_change = $validated['sw_vc_change'];
+        $setting->sw_join_leave = $validated['sw_join_leave'];
+        $setting->sw_threads = $validated['sw_threads'];
+        $setting->sw_ban_unban = $validated['sw_ban_unban'];
+        $setting->sw_nickname_change = $validated['sw_nickname_change'];                                       
         $setting->save();
 
-        return redirect("/instellingen/log");
-
+        return redirect('/instellingen/log');
     }
-    
-
 
     public function xp()
     {
-        
-        return view("bot_settings.xp", ["data" => Bot_setting::all()[0]]);
-
+        return view('bot_settings.xp', ['data' => BotSetting::all()->first()]);
     }
 
-    
-
-    public function post_xp(Request $request)
+    public function postXp(Request $request)
     {
-        
         $validated = $request->validate([
-            "xp_messages" => "required|numeric",
-            "xp_voicechat" => "required|numeric"
+            'xp_messages' => 'required|numeric',
+            'xp_voicechat' => 'required|numeric'
         ]);
 
         $user = Auth::user()->name;
-        Activity_log::add_to_log("Gebruiker $user heeft xp gewijzigd");
+        ActivityLog::addToLog("Gebruiker $user heeft xp gewijzigd");
 
-        $settings = Bot_setting::find(1);
-        $settings->xp_messages = $validated["xp_messages"];
-        $settings->xp_voicechat = $validated["xp_voicechat"];
+        $settings = BotSetting::find(1);
+        $settings->xp_messages = $validated['xp_messages'];
+        $settings->xp_voicechat = $validated['xp_voicechat'];
         $settings->save();
 
-        return redirect("/instellingen-bot-xp");
-    
+        return redirect('/instellingen-bot-xp');
     }
-    
 }
