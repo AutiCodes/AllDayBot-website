@@ -24,8 +24,7 @@ class AuthenticationController extends Controller
         ]);
 
         if (Auth::attempt($validated)) {
-            $user = Auth::user()->name;
-            ActivityLog::addToLog("Gebruiker $user heeft ingelogd");
+            ActivityLog::addToLog("Gebruiker heeft ingelogd");
             return redirect('/');
         } 
             
@@ -52,8 +51,7 @@ class AuthenticationController extends Controller
             'password' => Hash::make($validated['password'])
         ]);
 
-        $user = Auth::user()->name;
-        ActivityLog::addToLog("Gebruiker aangemaakt door $user");
+        ActivityLog::addToLog("Gebruiker aangemaakt");
 
         return back()->with('status', 'Gebruiker is aangemaakt');
     }
@@ -74,16 +72,14 @@ class AuthenticationController extends Controller
             'password' => Hash::make($validated['password'])
         ]);
 
-        $user = Auth::user()->name;
-        ActivityLog::addToLog("Wachtwoord gewijzigd door $user");
+        ActivityLog::addToLog("Wachtwoord gewijzigd");
         
         return back()->with('status', 'Wachtwoord is succesvol gewijzigd!');
     }
 
     public function logout()
     {
-        $user = Auth::user()->name;
-        ActivityLog::addToLog("Gebruiker $user heeft uitgelogd");
+        ActivityLog::addToLog("Gebruiker heeft uitgelogd");
 
         Session::flush();
         Auth::logout();

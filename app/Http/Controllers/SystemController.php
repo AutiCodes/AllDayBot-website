@@ -9,6 +9,6 @@ class SystemController extends Controller
 {
     public function systemLogs()
     {   
-        return view('system.logs', ['logs' => WebsiteActivityLog::get()->take(12)->sortByDesc('created_at')]);
+        return view('system.logs', ['logs' => WebsiteActivityLog::get()->sortByDesc('created_at')->take(14)]);
     }
 }
