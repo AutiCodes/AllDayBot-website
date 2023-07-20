@@ -7,69 +7,63 @@ use App\Models\BotSetting;
 use App\Helpers\ActivityLog;
 use Auth;
 
-
 class BotSettingsController extends Controller
 {
     public function log()
     {
-        return view('botSettings.log', ['settings' => BotSetting::all()->first()]);
+        return view('bot_settings.log', ['settings' => BotSetting::all()->first()]);
     }
 
-    
-
     public function postLog(Request $request)
-    {   
+    {    
         $validated = $request->validate([
-            'swMessageEdited' => 'max:1|nullable',
-            'swMessageDeleted' => 'max:1|nullable',
-            'swMessageReaction' => 'max:1|nullable',
-            'swVcJoinLeave' => 'max:1|nullable',
-            'swVcChange' => 'max:1|nullable',
-            'swJoinLeave' => 'max:1|nullable',
-            'swThreads' => 'max:1|nullable',
-            'swBanUnban' => 'max:1|nullable',
-            'swNicknameChange' => 'max:1|nullable',
+            'sw_message_edited' => 'max:1|nullable',
+            'sw_message_deleted' => 'max:1|nullable',
+            'sw_message_reaction' => 'max:1|nullable',
+            'sw_vc_join_leave' => 'max:1|nullable',
+            'sw_vc_change' => 'max:1|nullable',
+            'sw_join_leave' => 'max:1|nullable',
+            'sw_threads' => 'max:1|nullable',
+            'sw_ban_unban' => 'max:1|nullable',
+            'sw_nickname_change' => 'max:1|nullable',
         ]);
         
         $user = Auth::user()->name;
-        ActivityLog::addToLog('Gebruiker $user heeft log functie gewijzigd');
+        ActivityLog::addToLog("Gebruiker $user heeft log functie gewijzigd");
 
-        $setting = BotSetting::find(1);
-        $setting->messageEdited = $validated['swMessageEdited'];
-        $setting->messageDeleted = $validated['swMessageDeleted'];
-        $setting->messageReaction = $validated['swMessageReaction'];
-        $setting->voiceJoinLeave = $validated['swVcJoinLeave'];
-        $setting->voiceChange = $validated['swVcChange'];
-        $setting->threads = $validated['swThreads'];
-        $setting->modBanUnban = $validated['swBanUnban'];
-        $setting->memberNickname = $validated['swNicknameChange'];                                       
+        $setting = BotSetting::find(1);        
+        $setting->sw_message_edited = $validated['sw_message_edited'];
+        $setting->sw_message_deleted = $validated['sw_message_deleted'];
+        $setting->sw_message_reaction = $validated['sw_message_reaction'];
+        $setting->sw_vc_join_leave = $validated['sw_vc_join_leave'];
+        $setting->sw_vc_change = $validated['sw_vc_change'];
+        $setting->sw_join_leave = $validated['sw_join_leave'];
+        $setting->sw_threads = $validated['sw_threads'];
+        $setting->sw_ban_unban = $validated['sw_ban_unban'];
+        $setting->sw_nickname_change = $validated['sw_nickname_change'];                                       
         $setting->save();
 
         return redirect('/instellingen/log');
     }
-    
-
 
     public function xp()
     {
-        return view('botSettings.xp', ['data' => BotSetting::all()->first()]);
+        return view('bot_settings.xp', ['data' => BotSetting::all()->first()]);
     }
-
-    
 
     public function postXp(Request $request)
     {
         $validated = $request->validate([
-            'xpMessages' => 'required|numeric',
-            'xpVoicechat' => 'required|numeric'
+            'xp_messages' => 'required|numeric',
+            'xp_voicechat' => 'required|numeric'
         ]);
 
         $user = Auth::user()->name;
         ActivityLog::addToLog("Gebruiker $user heeft xp gewijzigd");
 
         $settings = BotSetting::find(1);
-        $settings->xpMessages = $validated['xpMessages'];
-        $settings->xpVoicechat = $validated['xpVoicechat'];
+        $settings->xp_messages = $validated['xp_messages'];
+        $settings->xp_voicechat = $validated['xp_voicechat'];
         $settings->save();
 
         return redirect('/instellingen-bot-xp');

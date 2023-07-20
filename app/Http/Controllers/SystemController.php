@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\WebsiteActivityLog;
 
-
 class SystemController extends Controller
 {
     public function systemLogs()

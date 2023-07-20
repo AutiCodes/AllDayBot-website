@@ -9,7 +9,6 @@ use App\Models\Statistic;
 use Illuminate\Support\Facades\Auth;
 use Hash;
 
-
 class HomepageController extends Controller
 {
     public function home()

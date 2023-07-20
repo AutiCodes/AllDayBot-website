@@ -15,14 +15,14 @@
 
         <center><h1 class="text-white">Wijzig de XP</h1></center>
 
-        <label for="xpMessages">Berichten XP per minuut (tussen de 1 en 100):</label>
-        <input type="number" id="xpMessages" name="xpMessages" min="1" max="100" value={{ $data->xpMessages }}>
+        <label for="xp_messages">Berichten XP per minuut (tussen de 1 en 100):</label>
+        <input type="number" id="xp_messages" name="xp_messages" min="1" max="100" value={{ $data->xp_messages }}>
 
         <br>
         <br>
 
-        <label for="xpVoicechat">Voicechat XP per minuut (tussen de 1 en 100):</label>
-        <input type="number" id="xpVoicechat" name="xpVoicechat" min="1" max="100" value={{ $data->xpVoicechat }}>
+        <label for="xp_voicechat">Voicechat XP per minuut (tussen de 1 en 100):</label>
+        <input type="number" id="xp_voicechat" name="xp_voicechat" min="1" max="100" value={{ $data->xp_voicechat }}>
 
 
         <div class="submitSwitch">

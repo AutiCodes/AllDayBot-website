@@ -5,7 +5,6 @@ use Request;
 use App\Models\WebsiteActivityLog;
 use Auth;
 
-
 class ActivityLog
 {
     public static function addToLog($subject) 
@@ -25,8 +24,6 @@ class ActivityLog
         $log['username'] = $user;
         WebsiteActivityLog::create($log);
     }
-
-
 
     public static function test()
     {
