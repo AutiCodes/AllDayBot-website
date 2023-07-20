@@ -28,8 +28,7 @@ class BotSettingsController extends Controller
             'sw_nickname_change' => 'max:1|nullable',
         ]);
         
-        $user = Auth::user()->name;
-        ActivityLog::addToLog("Gebruiker $user heeft log functie gewijzigd");
+        ActivityLog::addToLog("Gebruiker heeft log functie gewijzigd");
 
         $setting = BotSetting::find(1);        
         $setting->sw_message_edited = $validated['sw_message_edited'];
@@ -58,8 +57,7 @@ class BotSettingsController extends Controller
             'xp_voicechat' => 'required|numeric'
         ]);
 
-        $user = Auth::user()->name;
-        ActivityLog::addToLog("Gebruiker $user heeft xp gewijzigd");
+        ActivityLog::addToLog("Gebruiker heeft xp gewijzigd");
 
         $settings = BotSetting::find(1);
         $settings->xp_messages = $validated['xp_messages'];
