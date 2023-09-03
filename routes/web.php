@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BotSettingsController;
+use App\Http\Controllers\DiscordUserController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\StatisticController;
@@ -36,7 +37,6 @@ Route::get('/logout', [AuthenticationController::class, 'logout'])->middleware('
 Route::get('/wachtwoord-wijzigen', [AuthenticationController::class, 'changePassword'])->middleware('auth');
 Route::post('/post-wachtwoord-wijzigen', [AuthenticationController::class, 'postChangePassword'])->middleware('auth');
 
-
 // Statistics
 Route::get('/statistieken/kanalen', [StatisticController::class, 'channels'])->middleware('auth');
 
@@ -51,3 +51,6 @@ Route::post('/post-instellingen-bot-xp', [BotSettingsController::class, 'postXp'
 
 // System
 Route::get('/systeem/logs', [SystemController::class, 'systemLogs']);
+
+// Discord users
+Route::get('/gebruikers/zoeken', [DiscordUserController::class, 'index']);
