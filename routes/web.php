@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\SystemController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DiscordAuthController;
 
 
 /*
@@ -48,3 +49,5 @@ Route::post('/post-instellingen-bot-xp', [BotSettingsController::class, 'postXp'
 // System
 Route::get('/systeem/logs', [SystemController::class, 'systemLogs']);
 
+// Discord auth system
+Route::get('/discord/auth', [DiscordAuthController::class, 'postDiscordAuth']);
