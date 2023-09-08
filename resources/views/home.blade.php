@@ -14,9 +14,19 @@
 
 <container>
 
-
 <div class="total align-items-center">
       <div class="container first_container align-items-center">
+
+    
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
 
          <div class="row align-items-center">
 
