@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
 class BotPowerController extends Controller
@@ -14,6 +14,7 @@ class BotPowerController extends Controller
     public function getAPIPowerState()
     {   
         $TOKEN = env('PTERODACTYL_TOKEN');
+
         $ch = curl_init('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , "Authorization: Bearer $TOKEN"));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
