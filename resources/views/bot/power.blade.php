@@ -14,7 +14,7 @@
 <container>
 <div class="mainContainer">
 
-    <center><h1 class="text-white" id='status'>Status van de bot: </h1></center>
+    <center><h1 class="text-white" id='status'>Status van de bot: {{ $uptime }}</h1></center>
 
     <div class="container">
 
