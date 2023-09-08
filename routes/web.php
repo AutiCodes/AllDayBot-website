@@ -49,9 +49,6 @@ Route::post('/post-instellingen-bot-xp', [BotSettingsController::class, 'postXp'
 // System
 Route::get('/systeem/logs', [SystemController::class, 'systemLogs']);
 
-// Discord auth system
-Route::get('/discord/auth', [DiscordAuthController::class, 'postDiscordAuth']);
-
 // Bot power
 Route::get('/bot/power', [BotPowerController::class, 'getPower']);
 Route::get('/getpower', [BotPowerController::class, 'getAPIPowerState']);
