@@ -54,3 +54,4 @@ Route::get('/discord/auth', [DiscordAuthController::class, 'postDiscordAuth']);
 
 // Bot power
 Route::get('/bot/power', [BotPowerController::class, 'getPower']);
+Route::get('/getpower', [BotPowerController::class, 'getAPIPowerState']);

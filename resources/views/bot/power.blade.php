@@ -14,7 +14,7 @@
 <container>
 <div class="mainContainer">
 
-    <center><h1 class="text-white" id='status'>Status van de bot: {{ $uptime }}</h1></center>
+    <center><h1 class="text-white" id='status'>Status van de bot: <div id="result"></div></h1></center>
 
     <div class="container">
 
@@ -76,7 +76,20 @@ label {
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 <script>
+setInterval(function() {
+  // Make an API call to the route `getpower`
+  $.ajax({
+    url: '/getpower',
+    method: 'GET',
+    success: function(data) {
+      // Place the result of the API call in the div with id `result`
+      $('#result').html(data);
+    }
+  });
+}, 500);
+</script>
 
 </script>
 
