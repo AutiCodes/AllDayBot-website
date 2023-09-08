@@ -75,7 +75,9 @@ label {
     left: 4%;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
 
-<script src="{{'/assets/js/bot_power.js'}}"></script>
+</script>
 
 </html>
