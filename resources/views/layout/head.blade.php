@@ -77,14 +77,12 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Server
+            Bot
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="/gebruikers/zoeken">Gebruikers zoeken</a>
+            <a class="dropdown-item" href="/bot/power">Stoppen/starten</a>
           </div>
         </li>
-
-
     </ul>
 
   </div>
