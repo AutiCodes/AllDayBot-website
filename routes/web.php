@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\BotSettingsController;
+use App\Http\Controllers\DiscordAuthController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\SystemController;
-
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,10 +36,8 @@ Route::get('/logout', [AuthenticationController::class, 'logout'])->middleware('
 Route::get('/wachtwoord-wijzigen', [AuthenticationController::class, 'changePassword'])->middleware('auth');
 Route::post('/post-wachtwoord-wijzigen', [AuthenticationController::class, 'postChangePassword'])->middleware('auth');
 
-
 // Statistics
 Route::get('/statistieken/kanalen', [StatisticController::class, 'channels'])->middleware('auth');
-
 
 // Bot settings
 Route::get('/instellingen/log', [BotSettingsController::class, 'log'])->middleware('auth');
@@ -48,6 +46,8 @@ Route::post('/post-instellingen-bot-log', [BotSettingsController::class, 'postLo
 Route::get('/instellingen-bot-xp', [BotSettingsController::class, 'xp'])->middleware('auth');
 Route::post('/post-instellingen-bot-xp', [BotSettingsController::class, 'postXp'])->middleware('auth');
 
-
 // System
 Route::get('/systeem/logs', [SystemController::class, 'systemLogs']);
+
+// Discord auth system
+Route::get('/discord/auth', [DiscordAuthController::class, 'postDiscordAuth']);
