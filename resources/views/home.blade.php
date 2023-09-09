@@ -16,7 +16,6 @@
 
 <div class="total align-items-center">
       <div class="container first_container align-items-center">
-
     
         @if (session('status'))
             <div class="alert alert-success" role="alert">
