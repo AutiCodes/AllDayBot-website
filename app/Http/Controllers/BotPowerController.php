@@ -39,4 +39,31 @@ class BotPowerController extends Controller
 
         return $botUptime;
     }
+
+    public function postPowerButton(Request $request)
+    {
+        $TOKEN = env('PTERODACTYL_TOKEN');
+
+        $ch = curl_init('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/power');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , "Authorization: Bearer $TOKEN"));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        switch ($request->input('button_option')) {
+            case 'start':
+                curl_setopt($ch, CURLOPT_POSTFIELDS, '{"signal": "start"}');
+                break;
+            case 'stop':
+                curl_setopt($ch, CURLOPT_POSTFIELDS, '{"signal": "kill"}');
+                break;
+            case 'restart':
+                curl_setopt($ch, CURLOPT_POSTFIELDS, '{"signal": "restart"}');
+                break;
+            } 
+            
+        $res = curl_exec($ch);
+        return redirect('bot/power');
+
+    }
 }
