@@ -53,3 +53,4 @@ Route::get('/systeem/logs', [SystemController::class, 'systemLogs']);
 Route::get('/bot/power', [BotPowerController::class, 'getPower']);
 Route::get('/getpower', [BotPowerController::class, 'getAPIPowerState']);
 Route::post('/bot/post-power', [BotPowerController::class, 'postPowerButton']);
+Route::get('/bot/resources', [BotPowerController::class, 'getResources']);

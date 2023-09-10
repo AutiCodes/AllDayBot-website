@@ -28,7 +28,6 @@
 
         <button type="submit" name="button_option" id="button_option" value="restart" class="btn btn-warning">Herstarten</button>
 
-
         <br>
     </form>
 

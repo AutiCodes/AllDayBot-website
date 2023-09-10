@@ -66,4 +66,17 @@ class BotPowerController extends Controller
         return redirect('bot/power');
 
     }
+
+    public function getResources()
+    {
+        $TOKEN = env('PTERODACTYL_TOKEN');
+
+        $ch = curl_init('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , "Authorization: Bearer $TOKEN"));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $res = json_decode(curl_exec($ch));
+        
+        return view('bot.resources', ['data' => $res->attributes->resources]);
+    }
 }
