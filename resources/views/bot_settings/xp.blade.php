@@ -1,32 +1,19 @@
 <!doctype html>
 <html>
+<head>
+</head>
 
-
-@include('layout.head')
-<link rel="icon" href="ADBlogo.png">
-
-
+<header>
+    @include('layout.head')
+</header>
 
 <body>
 <container>
 <div class="mainContainer">
-    
-
     <form action="/post-instellingen-bot-xp" method="POST">
-        
         @csrf
 
         <center><h1 class="text-white">Wijzig de XP</h1></center>
-
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @elseif (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
-            </div>
-        @endif
 
         <label for="xp_messages">Berichten XP per minuut (tussen de 1 en 100):</label>
         <input type="number" id="xp_messages" name="xp_messages" min="1" max="100" value={{ $data->xp_messages }}>

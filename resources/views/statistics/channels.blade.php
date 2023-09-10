@@ -1,8 +1,9 @@
 <!doctype html>
 <html>
-
-@include('layout.head')
-
+<head>
+   @include('layout.head')
+   <link rel="icon" href="{{ url('/ADBlog1o.png') }}">
+</head>
 <body>
 
 

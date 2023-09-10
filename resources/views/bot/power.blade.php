@@ -1,10 +1,7 @@
 <!doctype html>
 <html>
-<head>
-</head>
 
 @include('layout.head')
-<link rel="icon" href="ADBlogo.png">
 
 <body>
 
@@ -21,11 +18,12 @@
 
         @csrf
 
-        <button type="submit" name="button_option" id="button_option" value="start" class="btn btn-success">Starten</button>
+        <button type="submit" class="btn btn-success">Starten</button>
 
-        <button type="submit" name="button_option" id="button_option"value="stop" class="btn btn-danger">Stoppen</button>
+        <button type="submit" class="btn btn-danger">Stoppen</button>
 
-        <button type="submit" name="button_option" id="button_option" value="restart" class="btn btn-warning">Herstarten</button>
+        <button type="submit" class="btn btn-warning">Herstarten</button>
+
 
         <br>
     </form>

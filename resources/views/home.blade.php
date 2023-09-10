@@ -1,9 +1,14 @@
 <!doctype html>
 <html>
+<head>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
 
-@include('layout.head')
+</head>
+
+<header>
+    @include('layout.head')
+</header>
 
 <body>
 
