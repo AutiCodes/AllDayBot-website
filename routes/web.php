@@ -50,7 +50,7 @@ Route::post('/post-instellingen-bot-xp', [BotSettingsController::class, 'postXp'
 Route::get('/systeem/logs', [SystemController::class, 'systemLogs']);
 
 // Bot power
-Route::get('/bot/power', [BotPowerController::class, 'getPower']);
-Route::get('/getpower', [BotPowerController::class, 'getAPIPowerState']);
-Route::post('/bot/post-power', [BotPowerController::class, 'postPowerButton']);
-Route::get('/bot/resources', [BotPowerController::class, 'getResources']);
+Route::get('/bot/power', [BotPowerController::class, 'getPower'])->middleware('auth');
+Route::get('/getpower', [BotPowerController::class, 'getAPIPowerState'])->middleware('auth');
+Route::post('/bot/post-power', [BotPowerController::class, 'postPowerButton'])->middleware('auth');
+Route::get('/bot/resources', [BotPowerController::class, 'getResources'])->middleware('auth');
