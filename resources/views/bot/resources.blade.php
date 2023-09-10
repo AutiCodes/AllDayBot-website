@@ -1,11 +1,10 @@
 sou<!doctype html>
 <html>
-<head>
-</head>
 
-<header>
-    @include('layout.head')
-</header>
+
+@include('layout.head')
+<link rel="icon" href="ADBlogo.png">
+
 
 <body>
 
@@ -23,8 +22,6 @@ sou<!doctype html>
         <p> RAM: {{ round($data->memory_bytes / 1048576, 2) }}MB </p>
 
         <p> Storage: {{ round($data->disk_bytes / 1048576, 2) }}MB </p>
-
-        <p> Network in/out: {{ $data->network_rx_bytes }} - {{ $data->network_tx_bytes }}</p>
 
         <p> Network in/out: {{ round($data->network_rx_bytes / 1048576, 2)}}MB - {{ round($data->network_tx_bytes / 1048576, 2)}}MB</p>
 

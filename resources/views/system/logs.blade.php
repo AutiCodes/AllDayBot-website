@@ -1,5 +1,9 @@
-@include("layout.head")
+<head>
 
+@include("layout.head")
+<link rel="icon" href="{{ url('/ADBlogo.png') }}">
+
+</head>
 <div class="log_container">
         
     <div class="container">

@@ -3,9 +3,8 @@
 <head>
 </head>
 
-<header>
-    @include('layout.head')
-</header>
+@include('layout.head')
+<link rel="icon" href="ADBlogo.png">
 
 <body>
 

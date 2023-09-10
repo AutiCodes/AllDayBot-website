@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
-<head>
-   @include('layout.head')
-</head>
+
+@include('layout.head')
+
 <body>
 
 

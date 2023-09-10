@@ -1,19 +1,19 @@
 <!doctype html>
 <html>
-<head>
-</head>
 
-<header>
-    @include('layout.head')
-</header>
+
+@include('layout.head')
+<link rel="icon" href="ADBlogo.png">
+
+
 
 <body>
 <container>
 <div class="mainContainer">
     
 
-    <iframe name="votar" style="display:none;"></iframe>
-    <form action="/post-instellingen-bot-xp" method="POST" target="votar>
+    <form action="/post-instellingen-bot-xp" method="POST">
+        
         @csrf
 
         <center><h1 class="text-white">Wijzig de XP</h1></center>
