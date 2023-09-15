@@ -1,7 +1,10 @@
-<!doctype html>
+sou<!doctype html>
 <html>
 
+
 @include('layout.head')
+<link rel="icon" href="ADBlogo.png">
+
 
 <body>
 
@@ -10,23 +13,17 @@
 <container>
 <div class="mainContainer">
 
-    <center><h1 class="text-white" id='status'>Status van de bot: <div id="result"></div></h1></center>
+    <center><h1 class="text-white" id='status'>Resources van de bot:</h1></center>
 
     <div class="container">
 
-    <form action="/bot/post-power" method="POST">
+        <p> CPU: {{ $data['cpu_absolute'] }}</p>
 
-        @csrf
+        <p> RAM: {{ round($data['memory_bytes'] / 1048576, 2) }}MB </p>
 
-        <button type="submit" class="btn btn-success">Starten</button>
+        <p> Storage: {{ round($data['disk_bytes'] / 1048576, 2) }}MB </p>
 
-        <button type="submit" class="btn btn-danger">Stoppen</button>
-
-        <button type="submit" class="btn btn-warning">Herstarten</button>
-
-
-        <br>
-    </form>
+        <p> Netwerk in/uit: {{ round($data['network_rx_bytes'] / 1048576, 2)}}MB - {{ round($data['network_tx_bytes'] / 1048576, 2)}}MB</p>
 
     </div>
 
@@ -72,21 +69,5 @@ label {
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-<script>
-setInterval(function() {
-  // Make an API call to the route `getpower`
-  $.ajax({
-    url: '/getpower',
-    method: 'GET',
-    success: function(data) {
-      // Place the result of the API call in the div with id `result`
-      $('#result').html(data);
-    }
-  });
-}, 500);
-</script>
-
-</script>
 
 </html>

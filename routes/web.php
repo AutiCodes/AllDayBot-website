@@ -36,6 +36,10 @@ Route::get('/logout', [AuthenticationController::class, 'logout'])->middleware('
 Route::get('/wachtwoord-wijzigen', [AuthenticationController::class, 'changePassword'])->middleware('auth');
 Route::post('/post-wachtwoord-wijzigen', [AuthenticationController::class, 'postChangePassword'])->middleware('auth');
 
+// Forgot password:
+Route::get('/wachtwoord-vergeten', [AuthenticationController::class, 'passwordForgot']);
+Route::post('/post-wachtwoord-vergeten', [AuthenticationController::class, 'postPasswordForgot']);
+
 // Statistics
 Route::get('/statistieken/kanalen', [StatisticController::class, 'channels'])->middleware('auth');
 
@@ -50,5 +54,7 @@ Route::post('/post-instellingen-bot-xp', [BotSettingsController::class, 'postXp'
 Route::get('/systeem/logs', [SystemController::class, 'systemLogs']);
 
 // Bot power
-Route::get('/bot/power', [BotPowerController::class, 'getPower']);
-Route::get('/getpower', [BotPowerController::class, 'getAPIPowerState']);
+Route::get('/bot/power', [BotPowerController::class, 'getPower'])->middleware('auth');
+Route::get('/getpower', [BotPowerController::class, 'getAPIPowerState'])->middleware('auth');
+Route::post('/bot/post-power', [BotPowerController::class, 'postPowerButton'])->middleware('auth');
+Route::get('/bot/resources', [BotPowerController::class, 'getResources'])->middleware('auth');

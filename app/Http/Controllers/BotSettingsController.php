@@ -42,7 +42,7 @@ class BotSettingsController extends Controller
         $setting->sw_nickname_change = $validated['sw_nickname_change'];                                       
         $setting->save();
 
-        return redirect('/instellingen/log');
+        return redirect('/instellingen/log')->with('status', 'Let op: Je moet de bot nog wel herstarten voor de wijzigingen van start gaan!');
     }
 
     public function xp()
@@ -64,6 +64,6 @@ class BotSettingsController extends Controller
         $settings->xp_voicechat = $validated['xp_voicechat'];
         $settings->save();
 
-        return redirect('/instellingen-bot-xp');
+        return redirect('/instellingen-bot-xp')->with('status', 'Let op: Je moet de bot nog wel herstarten voor de wijzigingen van start gaan!');
     }
 }

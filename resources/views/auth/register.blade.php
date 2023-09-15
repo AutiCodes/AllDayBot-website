@@ -1,5 +1,7 @@
 
 @include('layout.head')
+<link rel="icon" href="ADBlogo.png">
+
 <br>
 <br>
 <br>

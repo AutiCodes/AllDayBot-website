@@ -15,19 +15,9 @@
 
   <body class="text-center">
 
-    <form class="form-signin" action="/postlogin" method="POST">
+    <form class="form-signin" action="/post-wachtwoord-vergeten" method="POST">
 
         @csrf
-
-        @if ($errors->any())
-        <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-        </div>
-        @endif
 
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -41,18 +31,13 @@
 
         <img class="mb-4" src="ADBlogo.png" alt="" width="100" height="100">
 
-        <h1 class="h3 mb-3 font-weight-normal text-white">Inloggen</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-white">Wacthwoord  vergeten</h1>
 
         <label for="inputEmail" class="sr-only">Email adres</label>
         <input type="email" id="email_address" class="form-control" placeholder="Email addres" name="email" required autofocus>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Reset wachtwoord</button>
 
-        <label for="inputPassword" class="sr-only">Wachtwoord</label>
-        <input type="password" id="password" class="form-control" placeholder="Wachtwoord" name="password" required>
-        
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-
-        <a href="/wachtwoord-vergeten" type="submit" id="password_forgot">Wachtwoord vergeten</a>
 
         <p class="mt-5 mb-3 text-white">&copy; <?php echo date("Y"); ?> - Een site van AllDayTechAndGaming - In development door KelvinCodes</p>
       
