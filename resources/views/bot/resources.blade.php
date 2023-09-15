@@ -17,13 +17,13 @@ sou<!doctype html>
 
     <div class="container">
 
-        <p> CPU: {{ $data->cpu_absolute }}</p>
+        <p> CPU: {{ $data['cpu_absolute'] }}</p>
 
-        <p> RAM: {{ round($data->memory_bytes / 1048576, 2) }}MB </p>
+        <p> RAM: {{ round($data['memory_bytes'] / 1048576, 2) }}MB </p>
 
-        <p> Storage: {{ round($data->disk_bytes / 1048576, 2) }}MB </p>
+        <p> Storage: {{ round($data['disk_bytes'] / 1048576, 2) }}MB </p>
 
-        <p> Network in/out: {{ round($data->network_rx_bytes / 1048576, 2)}}MB - {{ round($data->network_tx_bytes / 1048576, 2)}}MB</p>
+        <p> Netwerk in/uit: {{ round($data['network_rx_bytes'] / 1048576, 2)}}MB - {{ round($data['network_tx_bytes'] / 1048576, 2)}}MB</p>
 
     </div>
 

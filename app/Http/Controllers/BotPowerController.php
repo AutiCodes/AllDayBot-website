@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Cache;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Exception;
 
 class BotPowerController extends Controller
 {
@@ -11,72 +14,84 @@ class BotPowerController extends Controller
         return view('bot.power');
     }
 
-    public function getAPIPowerState()
-    {   
-        $TOKEN = env('PTERODACTYL_TOKEN');
 
-        $ch = curl_init('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , "Authorization: Bearer $TOKEN"));
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        $ptero = json_decode(curl_exec($ch), true);
+      
+    public function getAPIPowerState() 
+    {
+      static $powerStates = [
+        'running' => 'Online',
+        'starting' => 'Aan het starten',
+        'offline' => 'Offline',
+        'stopping' => 'Aan het stoppen',
+      ];
 
-        switch ($ptero['attributes']['current_state']) {
+      $ptero = Cache::get('powerState');
 
-            case 'running':
-                $botUptime = "Online";
-                break;
-            case 'starting':
-                $botUptime = "Aan het starten";
-                break;
-            case 'offline':
-                $botUptime = "Offline";
-                break;
-            default:
-                $botUptime = $ptero['attributes']['current_state'];
-        }   
+      $resp = Http::withOptions([
+        'debug' => fopen('php://stderr', 'w')
+      ])
+      ->withHeaders([
+        'Content-Type' => 'application/json',
+      ])
+      ->withToken(env('PTERODACTYL_TOKEN'))
+      ->get('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources');
+    
+      $ptero = $resp->throw()->json();
 
-        return $botUptime;
+      if(!$ptero) {
+        try {
+          return $ptero;
+        } catch(Exception $e) {
+          $ptero = [
+            'attributes' => [
+              'current_state' => 'unknown'
+            ]
+          ];
+        } finally {
+          Cache::put('powerState', $ptero, $seconds = 2);
+        }
+      }
+    
+      if(!array_key_exists($ptero['attributes']['current_state'], $powerStates)) return 'Unknown';
+      return $powerStates[$ptero['attributes']['current_state']];
+
     }
 
     public function postPowerButton(Request $request)
     {
-        $TOKEN = env('PTERODACTYL_TOKEN');
-
-        $ch = curl_init('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/power');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , "Authorization: Bearer $TOKEN"));
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-
         switch ($request->input('button_option')) {
-            case 'start':
-                curl_setopt($ch, CURLOPT_POSTFIELDS, '{"signal": "start"}');
-                break;
-            case 'stop':
-                curl_setopt($ch, CURLOPT_POSTFIELDS, '{"signal": "kill"}');
-                break;
-            case 'restart':
-                curl_setopt($ch, CURLOPT_POSTFIELDS, '{"signal": "restart"}');
-                break;
-            } 
-            
-        $res = curl_exec($ch);
-        return redirect('bot/power');
+          case 'start':
+              $signal = 'start';
+              break;
+          case 'stop':
+              $signal = 'kill';
+              break;
+          case 'restart':
+              $signal = 'restart';
+              break;
+        }
 
+        Http::withToken(env('PTERODACTYL_TOKEN'))->withHeaders([
+          'Content-Type: application/json'
+        ])->post('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/power', ['signal' => $signal]);
+
+        return redirect('bot/power');
     }
 
     public function getResources()
     {
-        $TOKEN = env('PTERODACTYL_TOKEN');
+        $resp = Cache::get('getResources');
 
-        $ch = curl_init('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , "Authorization: Bearer $TOKEN"));
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $res = json_decode(curl_exec($ch));
-        
-        return view('bot.resources', ['data' => $res->attributes->resources]);
+        if (!$resp) {
+            $resp = Http::withOptions([
+              'debug' => fopen('php://stderr', 'w')
+            ])->withToken(env('PTERODACTYL_TOKEN'))->withHeaders([
+              'Content-Type' => 'application/json'
+            ])->get('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources')->throw()->json();
+
+            Cache::put('getResources', $resp, 10);
+        } 
+
+        return view('bot.resources', ['data' => $resp['attributes']['resources']]);
     }
 }

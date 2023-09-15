@@ -77,6 +77,24 @@ class AuthenticationController extends Controller
         return back()->with('status', 'Wachtwoord is succesvol gewijzigd!');
     }
 
+    public function passwordForgot(Request $request)
+    {
+        return view('auth.forgot_password');
+    }
+
+    public function postPasswordForgot(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        // If mail excist
+        if (User::where('email', $validated['email'])->count() != 0) {
+            return  "Jeej";
+        }
+        
+    }
+
     public function logout()
     {
         ActivityLog::addToLog("Gebruiker heeft uitgelogd");

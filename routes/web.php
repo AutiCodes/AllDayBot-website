@@ -36,6 +36,10 @@ Route::get('/logout', [AuthenticationController::class, 'logout'])->middleware('
 Route::get('/wachtwoord-wijzigen', [AuthenticationController::class, 'changePassword'])->middleware('auth');
 Route::post('/post-wachtwoord-wijzigen', [AuthenticationController::class, 'postChangePassword'])->middleware('auth');
 
+// Forgot password:
+Route::get('/wachtwoord-vergeten', [AuthenticationController::class, 'passwordForgot']);
+Route::post('/post-wachtwoord-vergeten', [AuthenticationController::class, 'postPasswordForgot']);
+
 // Statistics
 Route::get('/statistieken/kanalen', [StatisticController::class, 'channels'])->middleware('auth');
 
