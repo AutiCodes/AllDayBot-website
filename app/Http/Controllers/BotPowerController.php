@@ -35,7 +35,7 @@ class BotPowerController extends Controller
         ->withHeaders([
           'Content-Type' => 'application/json',
         ])
-        ->withToken(env('PTERODACTYL_TOKEN'))
+        ->withToken(config('services.pterodactyl.token'))
         ->get('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources');
       
         $ptero = $resp->throw()->json();
