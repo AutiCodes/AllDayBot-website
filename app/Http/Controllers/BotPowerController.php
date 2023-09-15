@@ -15,7 +15,7 @@ class BotPowerController extends Controller
     }
 
     public function getAPIPowerState() 
-    {
+    {   
         if(!config('services.pterodactyl.token')) {
           return 'No PTERODACTYL_TOKEN has been set in the enviroment file!';
         }
