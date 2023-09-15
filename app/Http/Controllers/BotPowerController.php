@@ -10,70 +10,69 @@ use Exception;
 class BotPowerController extends Controller
 {
     public function getPower()
-    {
+    { 
         return view('bot.power');
     }
 
-
-      
     public function getAPIPowerState() 
     {
-      static $powerStates = [
-        'running' => 'Online',
-        'starting' => 'Aan het starten',
-        'offline' => 'Offline',
-        'stopping' => 'Aan het stoppen',
-      ];
-
-      $ptero = Cache::get('powerState');
-
-      $resp = Http::withOptions([
-        'debug' => fopen('php://stderr', 'w')
-      ])
-      ->withHeaders([
-        'Content-Type' => 'application/json',
-      ])
-      ->withToken(env('PTERODACTYL_TOKEN'))
-      ->get('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources');
-    
-      $ptero = $resp->throw()->json();
-
-      if(!$ptero) {
-        try {
-          return $ptero;
-        } catch(Exception $e) {
-          $ptero = [
-            'attributes' => [
-              'current_state' => 'unknown'
-            ]
-          ];
-        } finally {
-          Cache::put('powerState', $ptero, $seconds = 2);
+        if(!config('services.pterodactyl.token')) {
+          return 'No PTERODACTYL_TOKEN has been set in the enviroment file!';
         }
-      }
-    
-      if(!array_key_exists($ptero['attributes']['current_state'], $powerStates)) return 'Unknown';
-      return $powerStates[$ptero['attributes']['current_state']];
 
+        static $powerStates = [
+          'running' => 'Online',
+          'starting' => 'Aan het starten',
+          'offline' => 'Offline',
+          'stopping' => 'Aan het stoppen',
+        ];
+
+        $ptero = Cache::get('powerState');
+
+        $resp = Http::withOptions([
+          'debug' => fopen('php://stderr', 'w')
+        ])
+        ->withHeaders([
+          'Content-Type' => 'application/json',
+        ])
+        ->withToken(env('PTERODACTYL_TOKEN'))
+        ->get('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources');
+      
+        $ptero = $resp->throw()->json();
+
+        if(!$ptero) {
+          try {
+            return $ptero;
+          } catch (Exception $e) {
+            $ptero = [
+              'attributes' => [
+                'current_state' => 'unknown'
+              ]
+            ];
+          } finally {
+            Cache::put('powerState', $ptero, $seconds = 2);
+          }
+        }
+      
+        if(!array_key_exists($ptero['attributes']['current_state'], $powerStates)) return 'Unknown';
+        return $powerStates[$ptero['attributes']['current_state']];
     }
 
     public function postPowerButton(Request $request)
-    {
-        switch ($request->input('button_option')) {
-          case 'start':
-              $signal = 'start';
-              break;
-          case 'stop':
-              $signal = 'kill';
-              break;
-          case 'restart':
-              $signal = 'restart';
-              break;
+    {   
+        if(!config('services.pterodactyl.token')) {
+          return 'No PTERODACTYL_TOKEN has been set in the enviroment file!';
         }
 
-        Http::withToken(env('PTERODACTYL_TOKEN'))->withHeaders([
+        static $powerCommands = [
+          'start' => 'start',
+          'stop' => 'kill',
+          'restart' => 'restart'
+        ];
+
+        Http::withToken(config('services.pterodactyl.token'))->withHeaders([
           'Content-Type: application/json'
-        ])->post('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/power', ['signal' => $signal]);
+        ])->post('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/power', ['signal' => $powerCommands[$request->input('button_option')]]);
 
         return redirect('bot/power');
     }
@@ -85,7 +84,7 @@ class BotPowerController extends Controller
         if (!$resp) {
             $resp = Http::withOptions([
               'debug' => fopen('php://stderr', 'w')
-            ])->withToken(env('PTERODACTYL_TOKEN'))->withHeaders([
+            ])->withToken(config('services.pterodactyl.token'))->withHeaders([
               'Content-Type' => 'application/json'
             ])->get('https://bothostmanager.kelvincodes.nl/api/client/servers/6cfbb9d3/resources')->throw()->json();
 
